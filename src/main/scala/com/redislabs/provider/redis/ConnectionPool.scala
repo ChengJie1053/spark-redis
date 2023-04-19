@@ -3,7 +3,6 @@ package com.redislabs.provider.redis
 import redis.clients.jedis.exceptions.JedisConnectionException
 import redis.clients.jedis.{Jedis, JedisPool, JedisPoolConfig}
 
-import java.time.Duration
 import java.util.concurrent.ConcurrentHashMap
 import scala.collection.JavaConversions._
 
@@ -21,8 +20,8 @@ object ConnectionPool {
         poolConfig.setTestOnBorrow(false)
         poolConfig.setTestOnReturn(false)
         poolConfig.setTestWhileIdle(false)
-        poolConfig.setSoftMinEvictableIdleTime(Duration.ofMinutes(1))
-        poolConfig.setTimeBetweenEvictionRuns(Duration.ofSeconds(30))
+        //        poolConfig.setSoftMinEvictableIdleTime(Duration.ofMinutes(1))
+        //        poolConfig.setTimeBetweenEvictionRuns(Duration.ofSeconds(30))
         poolConfig.setNumTestsPerEvictionRun(-1)
 
         new JedisPool(poolConfig, re.host, re.port, re.timeout, re.user, re.auth, re.dbNum, re.ssl)
